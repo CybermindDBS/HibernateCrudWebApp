@@ -1,0 +1,135 @@
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+.page
+{
+    height: 100%;
+    width: 100%;
+}
+
+.page-top
+{
+    padding: 10px;
+    background-color: rgb(241, 255, 255);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: grid;
+    grid-template-columns: auto 1fr;
+    align-items: center;
+}
+
+.navbar-open-button
+{
+    border: 0;
+    background: none;
+    height: 25px;
+    width: 40px;
+}
+
+.navbar-open-button img
+{
+    width: 100%;
+    height: auto;
+}
+
+.heading
+{
+    font-family: Arial, serif;
+    margin:  0 0 0 25px;
+    padding: 3px;
+    font-size: 23px;
+}
+
+.navbar h2
+{
+    font-family: Arial, serif;
+    margin: 28px 0 0 20px;
+    padding: 0;
+    font-size: 23px;
+}
+
+.navbar
+{
+    background: rgb(241, 255, 255);
+    box-shadow: 4px 0 6px rgba(0, 0, 0, 0.1);
+    height: 100%;
+    width: 0;
+    z-index: 1;
+    position: fixed;
+    overflow: hidden;
+    transition: 0.05s ease-in;
+}
+
+.navbar button
+{
+    margin: 8px;
+    font-size: 22px;
+    background: none;
+    border: 0;
+    float: right;
+}
+
+.navbar a
+{
+    display: block;
+    padding: 11px 0 0 0;
+    font-size: 20px;
+    color: black;
+    text-decoration: none;
+    font-family: Arial, "serif";
+}
+
+.navbar a:hover
+{
+    background-color: rgb(250, 255, 255);
+}
+
+.container
+{
+    display: grid;
+    grid-template-columns: 65% 35%;
+    height: 100%;
+}
+
+.left-section
+{
+    grid-column: 1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    overflow: scroll;
+}
+
+.right-section
+{
+    grid-column: 2;
+    border-width: 4px;
+    border-style: outset;
+    overflow: scroll;
+}
+
+.container2
+{
+    margin: 30px;
+    display: grid;
+    grid-template-rows: auto 1fr;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th
+{
+    padding: 12px;
+    text-align: left;
+    border: 1px solid #ababab;
+}
+
+td {
+    padding: 12px;
+    text-align: left;
+    border: 1px solid #ddd;
+}
