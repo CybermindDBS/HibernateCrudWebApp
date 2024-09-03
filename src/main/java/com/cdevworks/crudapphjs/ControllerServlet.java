@@ -24,18 +24,17 @@ public class ControllerServlet extends HttpServlet {
             {
                 case "1":
                 {
-                    request.setAttribute("pageName", "Hibernate | Single Row Operations");
-                    request.setAttribute("tables", List.of(List.of(List.of(1,2,3,4,5), List.of(1,2,3,4,5)), List.of(List.of(1,2,3,4,5), List.of(1,2,3,4,5))));
+                    PageService.page1Get(request, response);
                     break;
                 }
                 case "2":
                 {
-                    request.setAttribute("pageName", "Hibernate | Multiple Row Operations");
+                    PageService.page2Get(request, response);
                     break;
                 }
                 default:
                 {
-                    request.setAttribute("pageName", "Page name");
+                    PageService.page1Get(request, response);
                     break;
                 }
             }
@@ -43,6 +42,35 @@ public class ControllerServlet extends HttpServlet {
         else {
             RequestDispatcher requestDispatcher = request.getRequestDispatcher("/main?pageId=1");
             requestDispatcher.forward(request, response);
+        }
+
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("gui.jsp");
+        requestDispatcher.forward(request, response);
+    }
+
+    public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        response.setContentType("text/html");
+
+        String pageId = request.getParameter("pageId");;
+        if(pageId != null)
+        {
+            switch (pageId)
+            {
+                case "1":
+                {
+                    PageService.page1Post(request, response);
+                    break;
+                }
+                case "2":
+                {
+                    PageService.page2Post(request, response);
+                    break;
+                }
+                default:
+                {
+                    break;
+                }
+            }
         }
 
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("gui.jsp");
