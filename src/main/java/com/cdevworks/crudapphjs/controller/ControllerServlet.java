@@ -1,8 +1,8 @@
-package com.cdevworks.crudapphjs;
+package com.cdevworks.crudapphjs.controller;
 
 import java.io.*;
-import java.util.List;
 
+import com.cdevworks.crudapphjs.service.PageService;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.*;
@@ -32,11 +32,6 @@ public class ControllerServlet extends HttpServlet {
                     PageService.page2Get(request, response);
                     break;
                 }
-                default:
-                {
-                    PageService.page1Get(request, response);
-                    break;
-                }
             }
         }
         else {
@@ -64,10 +59,6 @@ public class ControllerServlet extends HttpServlet {
                 case "2":
                 {
                     PageService.page2Post(request, response);
-                    break;
-                }
-                default:
-                {
                     break;
                 }
             }

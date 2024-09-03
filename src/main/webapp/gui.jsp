@@ -1,7 +1,9 @@
 <%@ page import="java.util.List" %>
 <%@ page import="java.lang.reflect.Array" %>
 <%@ page import="java.util.ArrayList" %>
+<%@ page import="com.cdevworks.crudapphjs.Table" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="HJS" uri="/WEB-INF/hjs-tags.tld" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -35,38 +37,7 @@
 
     <div class="container">
         <div class="left-section">
-
-            <div class="table-container">
-                <h2>Table name</h2>
-                <table class="table">
-                    <thead>
-                    <tr>
-                        <th>c1</th>
-                        <th>c2</th>
-                        <th>c3</th>
-                        <th>c4</th>
-                        <th>c5</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td>d1</td>
-                        <td>d2</td>
-                        <td>d3</td>
-                        <td>d4</td>
-                        <td>d5</td>
-                    </tr>
-                    <tr>
-                        <td>d1</td>
-                        <td>d2</td>
-                        <td>d3</td>
-                        <td>d4</td>
-                        <td>d5</td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
-
+            <HJS:populateTable tables="${tables}"></HJS:populateTable>
         </div>
 
         <div class="right-section">

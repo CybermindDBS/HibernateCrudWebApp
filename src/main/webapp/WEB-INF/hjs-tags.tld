@@ -1,0 +1,14 @@
+<taglib>
+    <jsp-version>3.0</jsp-version>
+    <short-name>HJS</short-name>
+    <tlib-version>1.0</tlib-version>
+    <tag>
+        <name>populateTable</name>
+        <tag-class>com.cdevworks.crudapphjs.TablePopulationTagHandler</tag-class>
+        <body-content>empty</body-content>
+        <attribute>
+            <name>tables</name>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+    </tag>
+</taglib>
