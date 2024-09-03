@@ -35,9 +35,9 @@
 
     <div class="container">
         <div class="left-section">
-            <div class="container2">
+
+            <div class="table-container">
                 <h2>Table name</h2>
-                
                 <table class="table">
                     <thead>
                     <tr>
@@ -66,6 +66,7 @@
                     </tbody>
                 </table>
             </div>
+
         </div>
 
         <div class="right-section">
