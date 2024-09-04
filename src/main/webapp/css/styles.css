@@ -3,14 +3,12 @@ html, body {
     margin: 0;
 }
 
-.page
-{
+.page {
     height: 100%;
     width: 100%;
 }
 
-.page-top
-{
+.page-top {
     padding: 10px;
     background-color: rgb(241, 255, 255);
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -19,44 +17,38 @@ html, body {
     align-items: center;
 }
 
-.navbar-open-button
-{
+.navbar-open-button {
     border: 0;
     background: none;
     height: 25px;
     width: 40px;
 }
 
-.navbar-open-button img
-{
+.navbar-open-button img {
     width: 100%;
     height: auto;
 }
 
-.heading
-{
+.heading {
     font-family: Arial, serif;
-    margin:  0 0 0 25px;
+    margin: 0 0 0 25px;
     padding: 3px;
     font-size: 23px;
 }
 
-.heading-h2
-{
+.heading-h2 {
     font-family: Arial, serif;
     font-size: 20px;
 }
 
-.navbar h2
-{
+.navbar h2 {
     font-family: Arial, serif;
     margin: 28px 0 0 20px;
     padding: 0;
     font-size: 23px;
 }
 
-.navbar
-{
+.navbar {
     background: rgb(241, 255, 255);
     box-shadow: 4px 0 6px rgba(0, 0, 0, 0.1);
     height: 100%;
@@ -67,8 +59,7 @@ html, body {
     transition: 0.05s ease-in;
 }
 
-.navbar button
-{
+.navbar button {
     margin: 8px;
     font-size: 22px;
     background: none;
@@ -76,8 +67,7 @@ html, body {
     float: right;
 }
 
-.navbar a
-{
+.navbar a {
     display: block;
     padding: 11px 0 0 0;
     font-size: 20px;
@@ -86,20 +76,17 @@ html, body {
     font-family: Arial, "serif";
 }
 
-.navbar a:hover
-{
+.navbar a:hover {
     background-color: rgb(250, 255, 255);
 }
 
-.container
-{
+.container {
     display: grid;
     grid-template-columns: 65% 35%;
     height: 100%;
 }
 
-.left-section
-{
+.left-section {
     grid-column: 1;
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -107,16 +94,14 @@ html, body {
     overflow: scroll;
 }
 
-.right-section
-{
+.right-section {
     grid-column: 2;
     border-width: 4px;
     border-style: outset;
     overflow: scroll;
 }
 
-.table-container
-{
+.table-container {
     margin: 30px;
     display: grid;
     grid-template-rows: auto 1fr;
@@ -127,8 +112,7 @@ table {
     border-collapse: collapse;
 }
 
-th
-{
+th {
     padding: 12px;
     text-align: left;
     border: 1px solid #ababab;

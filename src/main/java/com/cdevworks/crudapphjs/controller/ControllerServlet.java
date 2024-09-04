@@ -1,12 +1,14 @@
 package com.cdevworks.crudapphjs.controller;
 
-import java.io.*;
-
 import com.cdevworks.crudapphjs.service.PageService;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
-import jakarta.servlet.http.*;
-import jakarta.servlet.annotation.*;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+
+import java.io.IOException;
 
 @WebServlet("/main")
 public class ControllerServlet extends HttpServlet {
@@ -17,24 +19,20 @@ public class ControllerServlet extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         response.setContentType("text/html");
 
-        String pageId = request.getParameter("pageId");;
-        if(pageId != null)
-        {
-            switch (pageId)
-            {
-                case "1":
-                {
+        String pageId = request.getParameter("pageId");
+        ;
+        if (pageId != null) {
+            switch (pageId) {
+                case "1": {
                     PageService.page1Get(request, response);
                     break;
                 }
-                case "2":
-                {
+                case "2": {
                     PageService.page2Get(request, response);
                     break;
                 }
             }
-        }
-        else {
+        } else {
             RequestDispatcher requestDispatcher = request.getRequestDispatcher("/main?pageId=1");
             requestDispatcher.forward(request, response);
         }
@@ -46,18 +44,15 @@ public class ControllerServlet extends HttpServlet {
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         response.setContentType("text/html");
 
-        String pageId = request.getParameter("pageId");;
-        if(pageId != null)
-        {
-            switch (pageId)
-            {
-                case "1":
-                {
+        String pageId = request.getParameter("pageId");
+        ;
+        if (pageId != null) {
+            switch (pageId) {
+                case "1": {
                     PageService.page1Post(request, response);
                     break;
                 }
-                case "2":
-                {
+                case "2": {
                     PageService.page2Post(request, response);
                     break;
                 }

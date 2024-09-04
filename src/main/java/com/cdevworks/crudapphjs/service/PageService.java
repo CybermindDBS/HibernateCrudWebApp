@@ -1,24 +1,19 @@
 package com.cdevworks.crudapphjs.service;
 
 import com.cdevworks.crudapphjs.Table;
+import com.cdevworks.crudapphjs.persistance.dao.EmployeeDao;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class PageService {
     public static void page1Get(HttpServletRequest request, HttpServletResponse response) {
         request.setAttribute("pageName", "Hibernate | Single Row Operations");
-        List<List<String>> table1 = new ArrayList<>();
-        table1.add(Arrays.asList("a1", "a2", "a3"));
-        table1.add(Arrays.asList("a4", "a5", "a6"));
-        List<List<String>> table2 = new ArrayList<>();
-        table2.add(Arrays.asList("b1", "b2", "b3"));
-        table2.add(Arrays.asList("b4", "b5", "b6"));
-        request.setAttribute("tables", List.of(new Table("Table A", table1), new Table("Table B", table2)));
+        EmployeeDao employeeDao = new EmployeeDao();
+        List employees = employeeDao.getAllEmployees();
+        request.setAttribute("tables", List.of(new Table(Table.getName(employees), Table.getRows(employees)), new Table(Table.getName(employees), Table.getRows(employees))));
     }
 
     public static void page1Post(HttpServletRequest request, HttpServletResponse response) {

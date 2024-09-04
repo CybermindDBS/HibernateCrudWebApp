@@ -10,6 +10,7 @@ import java.util.List;
 public class TablePopulationTagHandler implements Tag {
     PageContext pageContext;
     StringBuilder html;
+    List<Table> tables;
 
     public List<Table> getTables() {
         return tables;
@@ -19,16 +20,9 @@ public class TablePopulationTagHandler implements Tag {
         this.tables = tables;
     }
 
-    List<Table> tables;
-
     @Override
     public void setPageContext(PageContext pageContext) {
         this.pageContext = pageContext;
-    }
-
-    @Override
-    public void setParent(Tag tag) {
-
     }
 
     @Override
@@ -37,31 +31,35 @@ public class TablePopulationTagHandler implements Tag {
     }
 
     @Override
+    public void setParent(Tag tag) {
+
+    }
+
+    @Override
     public int doStartTag() throws JspException {
-        if(tables == null)
+        if (tables == null)
             return SKIP_BODY;
 
         html = new StringBuilder();
-        for(Table table : tables)
-        {
+        for (Table table : tables) {
             html.append("<div class='table-container'>");
             html.append("<h2 class='heading-h2'>").append(table.tableName).append("</h2>");
             html.append("<table>");
             html.append("<thead>");
             html.append("<tr>");
 
-            for(String val : table.rows.get(0))
+            for (String val : table.rows.get(0))
                 html.append("<th>").append(val).append("</th>");
 
             html.append("</tr>");
             html.append("</thead>");
             html.append("<tbody>");
 
-            for(List<String> row : table.rows)
-            {
+            for (List<String> row : table.rows) {
+                if (row.equals(table.rows.get(0)))
+                    continue;
                 html.append("<tr>");
-                for(String val : row)
-                {
+                for (String val : row) {
                     html.append("<td>").append(val).append("</td>");
                 }
                 html.append("</tr>");
@@ -76,7 +74,7 @@ public class TablePopulationTagHandler implements Tag {
 
     @Override
     public int doEndTag() throws JspException {
-        if(tables == null)
+        if (tables == null)
             return SKIP_BODY;
 
         try {
