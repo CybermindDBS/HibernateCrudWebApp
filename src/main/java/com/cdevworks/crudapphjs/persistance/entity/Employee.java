@@ -1,23 +1,32 @@
 package com.cdevworks.crudapphjs.persistance.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import org.hibernate.annotations.UpdateTimestamp;
+
+import java.time.LocalDate;
+import java.util.Date;
 
 @Entity
 public class Employee {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer id;
     String name;
     Integer salary;
     String address;
+    LocalDate doj;
     Integer supervisor_id;
+    @Version
+    Integer version;
+    @UpdateTimestamp
+    Date last_updated;
 
-    public Employee(Integer id, String name, Integer salary, String address, Integer supervisor_id) {
-        this.id = id;
+    public Employee(String name, Integer salary, String address, LocalDate doj, Integer supervisor_id) {
         this.name = name;
         this.salary = salary;
         this.address = address;
+        this.doj = doj;
         this.supervisor_id = supervisor_id;
     }
 
@@ -65,6 +74,30 @@ public class Employee {
         this.supervisor_id = supervisor_id;
     }
 
+    public LocalDate getDoj() {
+        return doj;
+    }
+
+    public void setDoj(LocalDate doj) {
+        this.doj = doj;
+    }
+
+    public Integer getVersion() {
+        return version;
+    }
+
+    public void setVersion(Integer version) {
+        this.version = version;
+    }
+
+    public Date getLast_updated() {
+        return last_updated;
+    }
+
+    public void setLast_updated(Date last_updated) {
+        this.last_updated = last_updated;
+    }
+
     @Override
     public String toString() {
         return "Employee{" +
@@ -72,7 +105,10 @@ public class Employee {
                 ", name='" + name + '\'' +
                 ", salary=" + salary +
                 ", address='" + address + '\'' +
+                ", doj=" + doj +
                 ", supervisor_id=" + supervisor_id +
+                ", version=" + version +
+                ", last_updated=" + last_updated +
                 '}';
     }
 }

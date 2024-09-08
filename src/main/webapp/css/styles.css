@@ -87,22 +87,19 @@ html, body {
 }
 
 .left-section {
-    grid-column: 1;
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
     overflow: scroll;
+    grid-template-rows: auto auto;
 }
 
 .right-section {
-    grid-column: 2;
     border-width: 4px;
     border-style: outset;
     overflow: scroll;
 }
 
 .table-container {
-    margin: 30px;
+    margin: 30px 50px;
     display: grid;
     grid-template-rows: auto 1fr;
 }
