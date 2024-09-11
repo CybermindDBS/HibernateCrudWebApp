@@ -1,24 +1,18 @@
 package com.cdevworks.crudapphjs.service;
 
-import com.cdevworks.crudapphjs.Table;
-import com.cdevworks.crudapphjs.persistance.dao.EmployeeDao;
-import com.cdevworks.crudapphjs.persistance.entity.Employee;
+import com.cdevworks.crudapphjs.service.pages.Page1;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
-import java.util.List;
 
 public class PageService {
     public static void page1Get(HttpServletRequest request, HttpServletResponse response) {
-        request.setAttribute("pageName", "Hibernate | Single Row Operations");
-        EmployeeDao employeeDao = new EmployeeDao();
-        List<Employee> employees = employeeDao.getAllEmployees();
-        request.setAttribute("tables", List.of(new Table(Table.getName(employees), Table.getRows(employees))));
+        Page1.handleGet(request, response);
     }
 
     public static void page1Post(HttpServletRequest request, HttpServletResponse response) {
-
+        Page1.handlePost(request, response);
     }
 
     public static void page2Get(HttpServletRequest request, HttpServletResponse response) throws IOException {

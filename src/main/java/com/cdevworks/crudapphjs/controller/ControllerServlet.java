@@ -37,7 +37,7 @@ public class ControllerServlet extends HttpServlet {
             requestDispatcher.forward(request, response);
         }
 
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher("gui.jsp");
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("jsp/gui.jsp");
         requestDispatcher.forward(request, response);
     }
 
@@ -59,7 +59,7 @@ public class ControllerServlet extends HttpServlet {
             }
         }
 
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher("gui.jsp");
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("jsp/gui.jsp");
         requestDispatcher.forward(request, response);
     }
 

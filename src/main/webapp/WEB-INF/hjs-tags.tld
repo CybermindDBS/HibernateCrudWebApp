@@ -11,4 +11,12 @@
             <rtexprvalue>true</rtexprvalue>
         </attribute>
     </tag>
+    <tag>
+        <name>includeHTML</name>
+        <tag-class>com.cdevworks.crudapphjs.IncludeJSPTagHandler</tag-class>
+        <body-content>empty</body-content>
+        <attribute>
+            <name>filePath</name>
+        </attribute>
+    </tag>
 </taglib>

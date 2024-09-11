@@ -30,5 +30,6 @@
 
         <!-- Specify annotated entity classes -->
         <mapping class="com.cdevworks.crudapphjs.persistance.entity.Employee"/>
+        <mapping class="com.cdevworks.crudapphjs.persistance.entity.Supervisor"/>
     </session-factory>
 </hibernate-configuration>

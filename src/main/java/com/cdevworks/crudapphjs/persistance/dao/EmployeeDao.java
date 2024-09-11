@@ -25,20 +25,30 @@ public class EmployeeDao {
         Transaction transaction = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
-            session.merge(employee);
+            System.out.println("TRANSIENT >> " + employee);
+            Employee persistentEmployee = session.get(Employee.class, employee.getId());
+            System.out.println("PERSISTENT >> " + persistentEmployee);
+            persistentEmployee.setName(employee.getName());
+            persistentEmployee.setSalary(employee.getSalary());
+            persistentEmployee.setAddress(employee.getAddress());
+            persistentEmployee.setDoj(employee.getDoj());
+            persistentEmployee.setSupervisor_id(employee.getSupervisor_id());
+            session.merge(persistentEmployee);
             transaction.commit();
         } catch (Exception e) {
+            e.printStackTrace();
             transaction.rollback();
         }
     }
 
-    public void delete(Employee employee) {
+    public void deleteEmployeeWithId(Integer id) {
         Transaction transaction = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
-            session.remove(employee);
+            session.remove(getEmployeeWithId(id));
             transaction.commit();
         } catch (Exception e) {
+            e.printStackTrace();
             transaction.rollback();
         }
     }
@@ -47,14 +57,14 @@ public class EmployeeDao {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Employee employee = new Employee();
         employee.setId(id);
-        employee = session.get(Employee.class, id, LockMode.UPGRADE_NOWAIT);
+        employee = session.get(Employee.class, id, LockMode.UPGRADE_NOWAIT); // Pessimistic Lock.
         session.close();
         return employee;
     }
 
     public List<Employee> getAllEmployees() {
         Session session = HibernateUtil.getSessionFactory().openSession();
-        Query query = session.createQuery("from Employee", Employee.class);
+        Query<Employee> query = session.createQuery("from Employee", Employee.class);
         List<Employee> employees = query.list();
         session.close();
         return employees;
