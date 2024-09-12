@@ -1,18 +1,14 @@
 package com.cdevworks.crudapphjs;
 
-import jakarta.servlet.ServletContext;
 import jakarta.servlet.jsp.JspException;
 import jakarta.servlet.jsp.PageContext;
 import jakarta.servlet.jsp.tagext.Tag;
-import jdk.jfr.SettingControl;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.nio.Buffer;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
-public class IncludeJSPTagHandler implements Tag {
+public class IncludeHTMLTagHandler implements Tag {
     String filePath;
     PageContext pageContext;
 

@@ -62,11 +62,22 @@ public class EmployeeDao {
         return employee;
     }
 
-    public List<Employee> getAllEmployees() {
+    public List<Employee> getFirstNEmployeesFrom(Integer index) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Query<Employee> query = session.createQuery("from Employee", Employee.class);
+        int start = (index - 1) * 10;
+        query.setFirstResult(start);
+        query.setMaxResults(10);
         List<Employee> employees = query.list();
         session.close();
         return employees;
+    }
+
+    public Integer getTotalRecords()
+    {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Query<Integer> query = session.createNativeQuery("SELECT COUNT(*) from Employee", Integer.class);
+        Integer count = query.getSingleResult();
+        return count;
     }
 }

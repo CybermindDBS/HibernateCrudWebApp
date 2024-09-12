@@ -49,7 +49,7 @@ public class Table {
         StringBuilder sb3 = new StringBuilder(rowStr);
         int start3 = 0, end3 = 0;
         while (true) {
-            start3 = sb3.indexOf(" ", start3) + 1;
+            start3 = sb3.indexOf(", ", start3) + 1;
             end3 = sb3.indexOf("=", end3 + 1);
             if (end3 > 0 && start3 > end3) start3 = 0;
             if (end3 <= 0)

@@ -17,12 +17,12 @@
     <button onclick="closeNavbar()">x</button>
     <h2 class="heading2">Crud App - Hibernate & JEE</h2>
     <ul>
-        <li><a href="/CrudAppHJS/main?pageId=1">Heading</a></li>
+        <li><a href="/CrudAppHJS/main?pageId=1&section=1">Simple CRUD & Pagination</a></li>
+        <li><a href="/CrudAppHJS/main?pageId=2">Heading</a></li>
         <ul>
-            <li><a href="/CrudAppHJS/main?pageId=2">Sub-Heading</a></li>
             <li><a href="/CrudAppHJS/main?pageId=3">Sub-Heading</a></li>
+            <li><a href="/CrudAppHJS/main?pageId=4">Sub-Heading</a></li>
         </ul>
-        <li><a href="/CrudAppHJS/main?pageId=4">Heading</a></li>
     </ul>
 </div>
 

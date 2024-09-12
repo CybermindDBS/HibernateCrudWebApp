@@ -1,12 +1,14 @@
 package com.cdevworks.crudapphjs.controller;
 
 import com.cdevworks.crudapphjs.service.PageService;
+import com.cdevworks.crudapphjs.setup.DBUtil;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.hibernate.Session;
 
 import java.io.IOException;
 
@@ -14,16 +16,18 @@ import java.io.IOException;
 public class ControllerServlet extends HttpServlet {
 
     public void init() {
+        DBUtil.run();
     }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         response.setContentType("text/html");
 
         String pageId = request.getParameter("pageId");
-        ;
+
         if (pageId != null) {
             switch (pageId) {
                 case "1": {
+                    request.getSession().setAttribute("section", request.getParameter("section"));
                     PageService.page1Get(request, response);
                     break;
                 }
@@ -33,7 +37,7 @@ public class ControllerServlet extends HttpServlet {
                 }
             }
         } else {
-            RequestDispatcher requestDispatcher = request.getRequestDispatcher("/main?pageId=1");
+            RequestDispatcher requestDispatcher = request.getRequestDispatcher("/main?pageId=1&section=1");
             requestDispatcher.forward(request, response);
         }
 

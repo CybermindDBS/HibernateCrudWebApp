@@ -13,7 +13,7 @@
     </tag>
     <tag>
         <name>includeHTML</name>
-        <tag-class>com.cdevworks.crudapphjs.IncludeJSPTagHandler</tag-class>
+        <tag-class>com.cdevworks.crudapphjs.IncludeHTMLTagHandler</tag-class>
         <body-content>empty</body-content>
         <attribute>
             <name>filePath</name>

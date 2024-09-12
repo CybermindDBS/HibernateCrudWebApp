@@ -14,9 +14,9 @@ import java.util.stream.Collectors;
 
 public class Page1 {
     public static void handleGet(HttpServletRequest request, HttpServletResponse response) {
-        request.setAttribute("pageName", "Hibernate | Single Row Operations");
+        request.setAttribute("pageName", "Hibernate | Simple CRUD & Pagination");
         EmployeeDao employeeDao = new EmployeeDao();
-        List<Employee> employees = employeeDao.getAllEmployees();
+        List<Employee> employees = employeeDao.getFirstNEmployeesFrom(Integer.parseInt((String) request.getSession().getAttribute("section")));
         request.setAttribute("tables", List.of(new Table(Table.getName(employees), Table.getRows(employees))));
     }
 
@@ -38,7 +38,7 @@ public class Page1 {
                 employee.setSupervisor_id(Integer.parseInt(parsedData.get(4)));
                 employeeDao.add(employee);
 
-                List<Employee> employees = employeeDao.getAllEmployees();
+                List<Employee> employees = employeeDao.getFirstNEmployeesFrom(Integer.parseInt((String) request.getSession().getAttribute("section")));
                 request.setAttribute("tables", List.of(new Table(Table.getName(employees), Table.getRows(employees))));
                 break;
             }
@@ -46,7 +46,7 @@ public class Page1 {
 
                 EmployeeDao employeeDao = new EmployeeDao();
                 List<Employee> employeeList = List.of(employeeDao.getEmployeeWithId(Integer.parseInt(request.getParameter("data"))));
-                List<Employee> employees = employeeDao.getAllEmployees();
+                List<Employee> employees = employeeDao.getFirstNEmployeesFrom(Integer.parseInt((String) request.getSession().getAttribute("section")));
                 request.setAttribute("tables", List.of(new Table("Output", Table.getRows(employeeList)), new Table(Table.getName(employees), Table.getRows(employees))));
                 break;
             }
@@ -67,7 +67,7 @@ public class Page1 {
                 employee.setSupervisor_id(Integer.parseInt(parsedData.get(5)));
                 employeeDao.update(employee);
 
-                List<Employee> employees = employeeDao.getAllEmployees();
+                List<Employee> employees = employeeDao.getFirstNEmployeesFrom(Integer.parseInt((String) request.getSession().getAttribute("section")));
                 request.setAttribute("tables", List.of(new Table(Table.getName(employees), Table.getRows(employees))));
                 break;
             }
@@ -75,12 +75,12 @@ public class Page1 {
 
                 EmployeeDao employeeDao = new EmployeeDao();
                 employeeDao.deleteEmployeeWithId(Integer.parseInt(request.getParameter("data")));
-                List<Employee> employees = employeeDao.getAllEmployees();
+                List<Employee> employees = employeeDao.getFirstNEmployeesFrom(Integer.parseInt((String) request.getSession().getAttribute("section")));
                 request.setAttribute("tables", List.of(new Table(Table.getName(employees), Table.getRows(employees))));
                 break;
             }
         }
 
-        request.setAttribute("pageName", "Hibernate | Single Row Operations");
+        request.setAttribute("pageName", "Hibernate | Simple CRUD & Pagination");
     }
 }

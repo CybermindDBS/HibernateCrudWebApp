@@ -1,5 +1,6 @@
 package com.cdevworks.crudapphjs;
 
+import com.cdevworks.crudapphjs.persistance.dao.EmployeeDao;
 import jakarta.servlet.jsp.JspException;
 import jakarta.servlet.jsp.PageContext;
 import jakarta.servlet.jsp.tagext.Tag;
@@ -68,8 +69,29 @@ public class TablePopulationTagHandler implements Tag {
             html.append("</tbody>");
             html.append("</table>");
             html.append("</div>");
+
+            if(pageContext.getRequest().getParameter("pageId").equals("1") && !table.tableName.equals("Output"))
+            {
+                EmployeeDao employeeDao = new EmployeeDao();
+                int index = Integer.parseInt((String) pageContext.getSession().getAttribute("section")), totalRecords = employeeDao.getTotalRecords();
+                html.append("<div class='table-nav'>");
+                html.append("<a href='/CrudAppHJS/main?pageId=1&section=" + getPrevIndex(index) + "'>prev</a>");
+                html.append("<a href='/CrudAppHJS/main?pageId=1&section=" + getNextIndex(index, totalRecords) + "'>next</a>");
+                html.append("</div>");
+            }
         }
         return SKIP_BODY;
+    }
+
+    public int getNextIndex(int currIndex, int totalRecords)
+    {
+        int max = (int) Math.ceil(totalRecords / 10f);
+        return Math.min(currIndex + 1, max);
+    }
+
+    public int getPrevIndex(int currIndex)
+    {
+        return currIndex > 2 ? currIndex - 1 : 1;
     }
 
     @Override
@@ -82,7 +104,7 @@ public class TablePopulationTagHandler implements Tag {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        return EVAL_PAGE;
+        return 0;
     }
 
     @Override
