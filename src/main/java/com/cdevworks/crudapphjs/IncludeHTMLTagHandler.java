@@ -26,13 +26,13 @@ public class IncludeHTMLTagHandler implements Tag {
     }
 
     @Override
-    public void setParent(Tag tag) {
-
+    public Tag getParent() {
+        return null;
     }
 
     @Override
-    public Tag getParent() {
-        return null;
+    public void setParent(Tag tag) {
+
     }
 
     @Override

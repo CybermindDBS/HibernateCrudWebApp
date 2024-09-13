@@ -1,39 +1,39 @@
 <div class="control-container">
     <h2>Add</h2>
-    <form method="post" action="/CrudAppHJS/main?pageId=1">
-        <input type="hidden" name="type" value="add"/>
+    <form action="/CrudAppHJS/main?pageId=1" method="post">
+        <input name="type" type="hidden" value="add"/>
         <label>
-            <input type="text" name="data" placeholder="Format: name, salary, address, doj, supervisor_id"/>
+            <input name="data" placeholder="Format: name, salary, address, doj, supervisor_id" type="text"/>
         </label>
         <input type="submit" value="add">
     </form>
 </div>
 <div class="control-container">
     <h2>Get</h2>
-    <form method="post" action="/CrudAppHJS/main?pageId=1">
-        <input type="hidden" name="type" value="get"/>
+    <form action="/CrudAppHJS/main?pageId=1" method="post">
+        <input name="type" type="hidden" value="get"/>
         <label>
-            <input type="text" name="data" placeholder="Format: id"/>
+            <input name="data" placeholder="Format: id" type="text"/>
         </label>
         <input type="submit" value="get">
     </form>
 </div>
 <div class="control-container">
     <h2>Update</h2>
-    <form method="post" action="/CrudAppHJS/main?pageId=1">
-        <input type="hidden" name="type" value="update"/>
+    <form action="/CrudAppHJS/main?pageId=1" method="post">
+        <input name="type" type="hidden" value="update"/>
         <label>
-            <input type="text" name="data" placeholder="Format: id, name, salary, address, doj, supervisor_id"/>
+            <input name="data" placeholder="Format: id, name, salary, address, doj, supervisor_id" type="text"/>
         </label>
         <input type="submit" value="update">
     </form>
 </div>
 <div class="control-container">
     <h2>Delete</h2>
-    <form method="post" action="/CrudAppHJS/main?pageId=1">
-        <input type="hidden" name="type" value="delete"/>
+    <form action="/CrudAppHJS/main?pageId=1" method="post">
+        <input name="type" type="hidden" value="delete"/>
         <label>
-            <input type="text" name="data" placeholder="Format: id"/>
+            <input name="data" placeholder="Format: id" type="text"/>
         </label>
         <input type="submit" value="delete">
     </form>

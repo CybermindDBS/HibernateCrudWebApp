@@ -70,8 +70,7 @@ public class TablePopulationTagHandler implements Tag {
             html.append("</table>");
             html.append("</div>");
 
-            if(pageContext.getRequest().getParameter("pageId").equals("1") && !table.tableName.equals("Output"))
-            {
+            if (pageContext.getRequest().getParameter("pageId").equals("1") && !table.tableName.equals("Output")) {
                 EmployeeDao employeeDao = new EmployeeDao();
                 int index = Integer.parseInt((String) pageContext.getSession().getAttribute("section")), totalRecords = employeeDao.getTotalRecords();
                 html.append("<div class='table-nav'>");
@@ -83,14 +82,12 @@ public class TablePopulationTagHandler implements Tag {
         return SKIP_BODY;
     }
 
-    public int getNextIndex(int currIndex, int totalRecords)
-    {
+    public int getNextIndex(int currIndex, int totalRecords) {
         int max = (int) Math.ceil(totalRecords / 10f);
         return Math.min(currIndex + 1, max);
     }
 
-    public int getPrevIndex(int currIndex)
-    {
+    public int getPrevIndex(int currIndex) {
         return currIndex > 2 ? currIndex - 1 : 1;
     }
 

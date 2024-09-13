@@ -16,7 +16,7 @@ public class PageService {
     }
 
     public static void page2Get(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        request.setAttribute("pageName", "Hibernate | Multiple Row Operations");
+        request.setAttribute("pageName", "Hibernate | Advanced OR-Mapping");
     }
 
     public static void page2Post(HttpServletRequest request, HttpServletResponse response) {

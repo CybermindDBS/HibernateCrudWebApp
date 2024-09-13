@@ -69,7 +69,8 @@ h3 {
     margin: 8px;
     font-size: 22px;
     background: none;
-    border: 0; grid-auto-flow: column;
+    border: 0;
+    grid-auto-flow: column;
     float: right;
 }
 

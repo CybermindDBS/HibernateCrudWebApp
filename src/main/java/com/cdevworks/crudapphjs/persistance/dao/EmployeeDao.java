@@ -2,6 +2,8 @@ package com.cdevworks.crudapphjs.persistance.dao;
 
 import com.cdevworks.crudapphjs.persistance.HibernateUtil;
 import com.cdevworks.crudapphjs.persistance.entity.Employee;
+import com.cdevworks.crudapphjs.persistance.entity.FullTimeEmployee;
+import com.cdevworks.crudapphjs.persistance.entity.PartTimeEmployee;
 import org.hibernate.LockMode;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -25,14 +27,20 @@ public class EmployeeDao {
         Transaction transaction = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
-            System.out.println("TRANSIENT >> " + employee);
-            Employee persistentEmployee = session.get(Employee.class, employee.getId());
-            System.out.println("PERSISTENT >> " + persistentEmployee);
+            Employee persistentEmployee;
+            if (employee instanceof FullTimeEmployee) {
+                persistentEmployee = session.get(FullTimeEmployee.class, employee.getId());
+                ((FullTimeEmployee) persistentEmployee).setSalary(((FullTimeEmployee) employee).getSalary());
+            } else {
+                persistentEmployee = session.get(PartTimeEmployee.class, employee.getId());
+                ((PartTimeEmployee) persistentEmployee).setHourly_wage(((PartTimeEmployee) employee).getHourly_wage());
+            }
+
             persistentEmployee.setName(employee.getName());
-            persistentEmployee.setSalary(employee.getSalary());
-            persistentEmployee.setAddress(employee.getAddress());
             persistentEmployee.setDoj(employee.getDoj());
-            persistentEmployee.setSupervisor_id(employee.getSupervisor_id());
+            persistentEmployee.setAddress(employee.getAddress());
+
+
             session.merge(persistentEmployee);
             transaction.commit();
         } catch (Exception e) {
@@ -64,7 +72,7 @@ public class EmployeeDao {
 
     public List<Employee> getFirstNEmployeesFrom(Integer index) {
         Session session = HibernateUtil.getSessionFactory().openSession();
-        Query<Employee> query = session.createQuery("from Employee", Employee.class);
+        Query<Employee> query = session.createQuery("from Employee order by id", Employee.class);
         int start = (index - 1) * 10;
         query.setFirstResult(start);
         query.setMaxResults(10);
@@ -73,11 +81,10 @@ public class EmployeeDao {
         return employees;
     }
 
-    public Integer getTotalRecords()
-    {
+    public Integer getTotalRecords() {
         Session session = HibernateUtil.getSessionFactory().openSession();
-        Query<Integer> query = session.createNativeQuery("SELECT COUNT(*) from Employee", Integer.class);
-        Integer count = query.getSingleResult();
+        Query<Long> query = session.createQuery("SELECT COUNT(*) from Employee", Long.class);
+        Integer count = query.getSingleResult().intValue();
         return count;
     }
 }

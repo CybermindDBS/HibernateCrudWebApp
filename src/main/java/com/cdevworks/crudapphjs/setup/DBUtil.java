@@ -1,9 +1,11 @@
 package com.cdevworks.crudapphjs.setup;
 
 import com.cdevworks.crudapphjs.persistance.dao.EmployeeDao;
+import com.cdevworks.crudapphjs.persistance.entity.Address;
 import com.cdevworks.crudapphjs.persistance.entity.Employee;
+import com.cdevworks.crudapphjs.persistance.entity.FullTimeEmployee;
+import com.cdevworks.crudapphjs.persistance.entity.PartTimeEmployee;
 
-import java.io.FileInputStream;
 import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -15,6 +17,7 @@ import java.util.Properties;
 public class DBUtil {
 
     public static void run() {
+
         try (InputStream is = DBUtil.class.getClassLoader().getResourceAsStream("config.properties")) {
             Properties properties = new Properties();
             properties.load(is);
@@ -38,38 +41,37 @@ public class DBUtil {
 
     public static void populateEmployeeTable() {
         List<Employee> employees = List.of(
-                new Employee("Rajesh Kumar", 50000, "Chennai", LocalDate.of(2022, 1, 15), 1),
-                new Employee("Sita Devi", 55000, "Bangalore", LocalDate.of(2021, 7, 22), 1),
-                new Employee("Amit Sharma", 60000, "Noida", LocalDate.of(2023, 3, 10), 2),
-                new Employee("Anita Patel", 65000, "Mumbai", LocalDate.of(2020, 11, 30), 2),
-                new Employee("Rajiv Singh", 70000, "Hyderabad", LocalDate.of(2019, 9, 5), 3),
-                new Employee("Sunita Rani", 72000, "Kolkata", LocalDate.of(2018, 6, 12), 3),
-                new Employee("Vijay Kumar", 48000, "Jaipur", LocalDate.of(2021, 5, 25), 4),
-                new Employee("Pooja Joshi", 50000, "Greater Noida", LocalDate.of(2022, 4, 20), 4),
-                new Employee("Manish Gupta", 52000, "Pune", LocalDate.of(2020, 10, 16), 5),
-                new Employee("Neeta Nair", 54000, "Ahmedabad", LocalDate.of(2022, 2, 8), 5),
-                new Employee("Rajendra Rao", 56000, "Bangalore", LocalDate.of(2021, 12, 19), 6),
-                new Employee("Priya Menon", 58000, "Chennai", LocalDate.of(2019, 8, 14), 6),
-                new Employee("Suresh Reddy", 60000, "Mumbai", LocalDate.of(2020, 7, 11), 7),
-                new Employee("Kavita Sharma", 62000, "Delhi", LocalDate.of(2019, 6, 23), 7),
-                new Employee("Anil Kumar", 64000, "Jaipur", LocalDate.of(2018, 5, 30), 8),
-                new Employee("Rekha Bhardwaj", 66000, "Hyderabad", LocalDate.of(2021, 1, 22), 8),
-                new Employee("Ravi Patil", 68000, "Pune", LocalDate.of(2022, 8, 15), 9),
-                new Employee("Sheetal Agarwal", 70000, "Kolkata", LocalDate.of(2020, 11, 18), 9),
-                new Employee("Ajay Bhat", 72000, "Delhi", LocalDate.of(2019, 2, 14), 10),
-                new Employee("Kiran Desai", 74000, "Bangalore", LocalDate.of(2021, 6, 17), 10),
-                new Employee("Deepak Jain", 76000, "Chennai", LocalDate.of(2022, 4, 21), 11),
-                new Employee("Madhavi Rao", 78000, "Mumbai", LocalDate.of(2018, 3, 19), 11),
-                new Employee("Vikram Mehta", 80000, "Hyderabad", LocalDate.of(2021, 5, 22), 12),
-                new Employee("Pallavi Sinha", 82000, "Bangalore", LocalDate.of(2019, 7, 13), 12),
-                new Employee("Sanjay Singh", 84000, "Delhi", LocalDate.of(2020, 9, 14), 13),
-                new Employee("Neelam Gupta", 86000, "Chennai", LocalDate.of(2022, 1, 5), 13),
-                new Employee("Arun Kumar", 88000, "Mumbai", LocalDate.of(2021, 3, 30), 14),
-                new Employee("Meena Raj", 90000, "Pune", LocalDate.of(2022, 11, 17), 14),
-                new Employee("Ramesh Bhardwaj", 92000, "Kolkata", LocalDate.of(2019, 4, 23), 15),
-                new Employee("Geeta Verma", 94000, "Delhi", LocalDate.of(2020, 6, 28), 15)
+                new FullTimeEmployee("Rajesh Kumar", new Address("Tamil Nadu", "Chennai"), LocalDate.of(2022, 1, 15), 60000),
+                new PartTimeEmployee("Sita Devi", new Address("Karnataka", "Bangalore"), LocalDate.of(2023, 3, 22), 400),
+                new FullTimeEmployee("Ravi Menon", new Address("Kerala", "Kochi"), LocalDate.of(2021, 7, 10), 75000),
+                new PartTimeEmployee("Anil Sharma", new Address("Delhi", "New Delhi"), LocalDate.of(2024, 5, 8), 450),
+                new FullTimeEmployee("Suresh Nair", new Address("Andhra Pradesh", "Hyderabad"), LocalDate.of(2020, 11, 25), 70000),
+                new PartTimeEmployee("Meera Patel", new Address("Gujarat", "Ahmedabad"), LocalDate.of(2023, 6, 30), 500),
+                new FullTimeEmployee("Kumar Reddy", new Address("Telangana", "Hyderabad"), LocalDate.of(2022, 2, 14), 65000),
+                new PartTimeEmployee("Pooja Gupta", new Address("Uttar Pradesh", "Lucknow"), LocalDate.of(2024, 7, 19), 480),
+                new FullTimeEmployee("Ajay Babu", new Address("Tamil Nadu", "Madurai"), LocalDate.of(2019, 4, 12), 68000),
+                new PartTimeEmployee("Nisha Rao", new Address("Karnataka", "Mysore"), LocalDate.of(2024, 8, 15), 490),
+                new FullTimeEmployee("Vikram Singh", new Address("Kerala", "Thrissur"), LocalDate.of(2018, 10, 30), 72000),
+                new PartTimeEmployee("Sanjay Patel", new Address("Gujarat", "Surat"), LocalDate.of(2024, 9, 1), 450),
+                new FullTimeEmployee("Anand Kumar", new Address("Andhra Pradesh", "Vijayawada"), LocalDate.of(2021, 6, 5), 73000),
+                new PartTimeEmployee("Radha Iyer", new Address("Maharashtra", "Pune"), LocalDate.of(2023, 10, 10), 500),
+                new FullTimeEmployee("Deepak Reddy", new Address("Telangana", "Secunderabad"), LocalDate.of(2022, 12, 20), 69000),
+                new PartTimeEmployee("Aarti Sharma", new Address("Delhi", "Noida"), LocalDate.of(2024, 1, 12), 470),
+                new FullTimeEmployee("Mohan Raj", new Address("Tamil Nadu", "Coimbatore"), LocalDate.of(2020, 9, 8), 67000),
+                new PartTimeEmployee("Sonal Desai", new Address("Karnataka", "Hubli"), LocalDate.of(2024, 2, 14), 480),
+                new FullTimeEmployee("Ramesh Kumar", new Address("Kerala", "Kollam"), LocalDate.of(2019, 5, 18), 74000),
+                new PartTimeEmployee("Sonia Singh", new Address("Uttar Pradesh", "Agra"), LocalDate.of(2023, 11, 25), 500),
+                new FullTimeEmployee("Narayana Rao", new Address("Andhra Pradesh", "Tirupati"), LocalDate.of(2022, 8, 4), 75000),
+                new PartTimeEmployee("Deepika Gupta", new Address("Gujarat", "Vadodara"), LocalDate.of(2024, 3, 20), 460),
+                new FullTimeEmployee("Krishna Reddy", new Address("Telangana", "Karimnagar"), LocalDate.of(2019, 12, 5), 76000),
+                new PartTimeEmployee("Manisha Patel", new Address("Maharashtra", "Nagpur"), LocalDate.of(2024, 4, 14), 490),
+                new FullTimeEmployee("Sanjay Kumar", new Address("Tamil Nadu", "Tirunelveli"), LocalDate.of(2021, 11, 30), 68000),
+                new PartTimeEmployee("Priya Menon", new Address("Karnataka", "Bellary"), LocalDate.of(2023, 7, 15), 470),
+                new FullTimeEmployee("Srinivas Reddy", new Address("Kerala", "Palakkad"), LocalDate.of(2020, 3, 5), 70000),
+                new PartTimeEmployee("Rakhi Rao", new Address("Delhi", "Faridabad"), LocalDate.of(2024, 5, 10), 480),
+                new FullTimeEmployee("Ajit Singh", new Address("Andhra Pradesh", "Guntur"), LocalDate.of(2018, 10, 12), 69000),
+                new PartTimeEmployee("Jaya Desai", new Address("Gujarat", "Rajkot"), LocalDate.of(2024, 6, 22), 500)
         );
-
         EmployeeDao employeeDao = new EmployeeDao();
         for (Employee employee : employees) {
             employeeDao.add(employee);

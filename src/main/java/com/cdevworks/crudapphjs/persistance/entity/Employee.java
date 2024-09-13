@@ -1,33 +1,33 @@
 package com.cdevworks.crudapphjs.persistance.entity;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.Filter;
+import org.hibernate.annotations.FilterDef;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class Employee {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     Integer id;
     String name;
-    Integer salary;
-    String address;
+    @Embedded
+    Address address;
     LocalDate doj;
-    Integer supervisor_id;
     @Version
     Integer version;
     @UpdateTimestamp
     Date last_updated;
 
-    public Employee(String name, Integer salary, String address, LocalDate doj, Integer supervisor_id) {
+    public Employee(String name, Address address, LocalDate doj) {
         this.name = name;
-        this.salary = salary;
         this.address = address;
         this.doj = doj;
-        this.supervisor_id = supervisor_id;
     }
 
     public Employee() {
@@ -50,28 +50,12 @@ public class Employee {
         this.name = name;
     }
 
-    public Integer getSalary() {
-        return salary;
-    }
-
-    public void setSalary(Integer salary) {
-        this.salary = salary;
-    }
-
-    public String getAddress() {
+    public Address getAddress() {
         return address;
     }
 
-    public void setAddress(String address) {
+    public void setAddress(Address address) {
         this.address = address;
-    }
-
-    public Integer getSupervisor_id() {
-        return supervisor_id;
-    }
-
-    public void setSupervisor_id(Integer supervisor_id) {
-        this.supervisor_id = supervisor_id;
     }
 
     public LocalDate getDoj() {
@@ -80,35 +64,5 @@ public class Employee {
 
     public void setDoj(LocalDate doj) {
         this.doj = doj;
-    }
-
-    public Integer getVersion() {
-        return version;
-    }
-
-    public void setVersion(Integer version) {
-        this.version = version;
-    }
-
-    public Date getLast_updated() {
-        return last_updated;
-    }
-
-    public void setLast_updated(Date last_updated) {
-        this.last_updated = last_updated;
-    }
-
-    @Override
-    public String toString() {
-        return "Employee{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", salary=" + salary +
-                ", address='" + address + '\'' +
-                ", doj=" + doj +
-                ", supervisor_id=" + supervisor_id +
-                ", version=" + version +
-                ", last_updated=" + last_updated +
-                '}';
     }
 }
