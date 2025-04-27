@@ -12,4 +12,4 @@ Additional Topics (Not Covered)
 7. Working with multiple Databases (Use different cfg.xml for each db)
 8. Hibernate Filter
 9. Working with composite keys in Hibernate
-10. OR-Mapping: Association Mapping and Collection Mapping
+10. OR-Mapping: Association Mapping and Collection Mapping (Covered in HiringPlatformWebApp project)
